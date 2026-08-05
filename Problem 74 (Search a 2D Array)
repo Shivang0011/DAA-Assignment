@@ -1,0 +1,62 @@
+class Solution {
+
+    public boolean searchMatrix(int[][] matrix, int target) {
+
+        //sare rows pe binary search lgana h
+       
+        int low = 0;
+        int n = matrix.length;
+        int columns = matrix[0].length;
+        int high = n-1;
+        while (low<= high) {
+            int mid = low + (high - low) / 2;
+
+
+            //for checking ki target uss row me hai ya nai
+
+            if (target >= matrix[mid][0] && target <= matrix[mid][columns - 1]) {
+
+
+                //inside check krenge
+                return binarySearch1D(matrix[mid], target);
+            }
+
+
+               //upper check krenge
+            else if (target < matrix[mid][0]) {
+                high = mid - 1;
+            }
+            else {
+
+
+               //lower check krnge
+                low = mid + 1;
+            }
+        }
+
+
+               //agar target nai mila toh
+        return false;
+    }
+
+    public boolean binarySearch1D(int[] arr, int target) {
+
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] == target)
+                return true;
+
+            else if (arr[mid] < target)
+                low = mid + 1;
+
+            else
+                high = mid - 1;
+        }
+        return false;
+    }
+}
