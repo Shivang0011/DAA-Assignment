@@ -1,0 +1,8 @@
+class Solution {
+    public int findKthLargest(int[] numbers, int k) {
+
+       // SORT krke bhi kr skte hn instead of minheap
+        Arrays.sort(numbers);
+        return numbers[numbers.length-k];
+    }
+}
